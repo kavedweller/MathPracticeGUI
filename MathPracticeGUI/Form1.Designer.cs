@@ -1,4 +1,4 @@
-﻿namespace MathLearningGUI
+﻿namespace MathPracticeGUI
 {
     partial class Form1
     {
@@ -78,7 +78,7 @@
             this.answerBox.Name = "answerBox";
             this.answerBox.Size = new System.Drawing.Size(103, 23);
             this.answerBox.TabIndex = 2;
-            this.answerBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.answerBox.TextChanged += new System.EventHandler(this.answerBox_TextChanged);
             // 
             // btnNext
             // 
@@ -90,7 +90,7 @@
             this.btnNext.TabIndex = 3;
             this.btnNext.Text = "&Next";
             this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.button1_Click);
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // label
             // 
@@ -109,7 +109,7 @@
             this.textQns.Name = "textQns";
             this.textQns.Size = new System.Drawing.Size(103, 23);
             this.textQns.TabIndex = 0;
-            this.textQns.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textQns.TextChanged += new System.EventHandler(this.textQns_TextChanged);
             // 
             // btnOK
             // 
@@ -121,7 +121,7 @@
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.button2_Click);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // lblScore
             // 
@@ -133,7 +133,6 @@
             this.lblScore.TabIndex = 7;
             this.lblScore.Text = "Score:";
             this.lblScore.Visible = false;
-            this.lblScore.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblScoreNum
             // 
@@ -240,7 +239,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(482, 264);
+            this.ClientSize = new System.Drawing.Size(482, 266);
             this.Controls.Add(this.lblDecimal);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnReset);
@@ -262,7 +261,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Math practice";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

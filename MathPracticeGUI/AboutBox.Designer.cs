@@ -1,4 +1,4 @@
-﻿namespace MathLearningGUI
+﻿namespace MathPracticeGUI
 {
     partial class AboutBox
     {
@@ -67,6 +67,7 @@
             // 
             // logoPictureBox
             // 
+            this.logoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);

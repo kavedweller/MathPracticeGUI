@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MathLearningGUI")]
+[assembly: AssemblyTitle("MathPracticeGUI")]
 [assembly: AssemblyDescription("A simple math practice GUI program to demostrate OOP and GUI concepts.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bangladesh Open University")]
-[assembly: AssemblyProduct("MathLearningGUI")]
+[assembly: AssemblyProduct("MathPracticeGUI")]
 [assembly: AssemblyCopyright("Not copyrighted ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

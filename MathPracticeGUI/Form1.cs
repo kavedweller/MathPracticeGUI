@@ -37,7 +37,6 @@ namespace MathPracticeGUI
         public int qn;          // this is not needed. but for now I'll do it my way.
 
         int rand;               // rand is exposed to check for division
-        int countdn;
         int score = 0;
         long startTime;
         long endTime;
@@ -73,7 +72,6 @@ namespace MathPracticeGUI
             answerBox.Visible = true;
             answerBox.Focus();
             startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            countdn = qn;
             compute();
         }
 
@@ -83,7 +81,7 @@ namespace MathPracticeGUI
             labelQuestion.Visible = true;
             answerBox.Clear();
             btnNext.Enabled = false;
-            textQns.Text = countdn + " remaining";
+            textQns.Text = (qn - count) + " remaining";
             if (count < qn)
             {
                 rand = lm.rnd.Next(1, 5);
@@ -206,7 +204,6 @@ namespace MathPracticeGUI
             lblDecimal.Visible = false;
 
             count++;
-            countdn--;
             compute();
         }
 

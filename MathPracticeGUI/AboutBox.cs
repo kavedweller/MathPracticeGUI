@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MathLearningGUI
+namespace MathPracticeGUI
 {
     partial class AboutBox : Form
     {

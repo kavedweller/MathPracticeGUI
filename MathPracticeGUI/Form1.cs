@@ -133,36 +133,54 @@ namespace MathPracticeGUI
         private void textQns_KeyPress(object sender, KeyPressEventArgs e)
         {
             //const char Backspace = (char)8;
-            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
+            //control key disabled (addressing 'ctrl+X' paste issue!)
+            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar == 22;
         }
 
         //enable OK button
         private void textQns_TextChanged(object sender, EventArgs e)
         {
-            btnOK.Enabled = true;
+            //check for empty string
+            if (!string.IsNullOrEmpty(this.textQns.Text))
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
+            }
+            
         }
 
         // the answerBox is different than above example
         // it occationally requires just one decimal ".", not more.
         private void answerBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //allows only digits, control characters and decimal points
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            //allows digits, and only one decimal point
+            if (!char.IsDigit(e.KeyChar) && (e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
 
             // allows only one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         //Next button is enabled after text input
         private void answerBox_TextChanged(object sender, EventArgs e)
         {
-            btnNext.Enabled = true;
+            //check for empty string
+            if (!string.IsNullOrEmpty(this.answerBox.Text))
+            {
+                btnNext.Enabled = true;
+            }
+            else
+            {
+                btnNext.Enabled = false;
+            }
         }
 
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.labelQuestion = new System.Windows.Forms.Label();
             this.resultBox = new System.Windows.Forms.TextBox();
@@ -47,6 +48,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDecimal = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
+            this.emptyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +75,7 @@
             // 
             // answerBox
             // 
+            this.answerBox.ContextMenuStrip = this.emptyContextMenu;
             this.answerBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answerBox.Location = new System.Drawing.Point(16, 187);
             this.answerBox.Name = "answerBox";
@@ -104,6 +107,7 @@
             // 
             // textQns
             // 
+            this.textQns.ContextMenuStrip = this.emptyContextMenu;
             this.textQns.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textQns.Location = new System.Drawing.Point(16, 68);
             this.textQns.Name = "textQns";
@@ -233,6 +237,11 @@
             this.lblTime.Text = "Test duration:";
             this.lblTime.Visible = false;
             // 
+            // emptyContextMenu
+            // 
+            this.emptyContextMenu.Name = "emptyContextMenu";
+            this.emptyContextMenu.Size = new System.Drawing.Size(61, 4);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnNext;
@@ -288,6 +297,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Label lblDecimal;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.ContextMenuStrip emptyContextMenu;
     }
 }
 

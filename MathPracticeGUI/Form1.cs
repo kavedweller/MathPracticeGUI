@@ -133,8 +133,7 @@ namespace MathPracticeGUI
         private void textQns_KeyPress(object sender, KeyPressEventArgs e)
         {
             //const char Backspace = (char)8;
-            //control key disabled (addressing 'ctrl+X' paste issue!)
-            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar == 22;
+            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
         }
 
         //enable OK button
@@ -156,17 +155,23 @@ namespace MathPracticeGUI
         // it occationally requires just one decimal ".", not more.
         private void answerBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //allows digits, and only one decimal point
-            if (!char.IsDigit(e.KeyChar) && (e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if (rand == 4)
             {
-                e.Handled = true;
+                //allows digits, and only one decimal point
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && (e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                //allows digits only
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+                {
+                    e.Handled = true;
+                }
             }
 
-            // allows only one decimal point
-            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
         }
 
         //Next button is enabled after text input
@@ -190,7 +195,6 @@ namespace MathPracticeGUI
             string result;
             if (rand == 4)
             {
-
                 double userAns = Convert.ToDouble(answerBox.Text);
                 //userAns = (Math.Round(userAns, 3));
                 userAns = Math.Truncate(userAns * 1000) / 1000;   // Rounding off could be difficult for the user, hence truncated!

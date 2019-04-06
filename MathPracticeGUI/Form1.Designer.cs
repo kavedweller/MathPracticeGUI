@@ -48,7 +48,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDecimal = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
-            this.emptyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.emptyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components); // this stub is needed to prevent right-click (and paste) inside the textBoxes.
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 

@@ -129,7 +129,7 @@ namespace MathPracticeGUI
         }
 
 
-        // check for digits only, I'll add some more codes later
+        // check for digits and backspace only, I'll add some more codes later
         private void textQns_KeyPress(object sender, KeyPressEventArgs e)
         {
             //const char Backspace = (char)8;
@@ -157,7 +157,7 @@ namespace MathPracticeGUI
         {
             if (rand == 4)
             {
-                //allows digits, and only one decimal point
+                //allows digits, backspace and only one decimal point
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && (e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
                 {
                     e.Handled = true;
@@ -165,7 +165,7 @@ namespace MathPracticeGUI
             }
             else
             {
-                //allows digits only
+                //allows digits only and backspace
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
                 {
                     e.Handled = true;

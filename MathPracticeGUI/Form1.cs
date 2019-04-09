@@ -33,8 +33,8 @@ namespace MathPracticeGUI
 
         LearnMath lm = new LearnMath(); // let's create an object!!
 
-        public int count = 0;   // if you can figure out how to write a for loop,
-        public int qn;          // this is not needed. but for now I'll do it my way.
+        public int qn;          // if you can figure out how to write a for loop,
+        public int count = 0;   // this is not needed. but for now I'll do it my way.
 
         int rand;               // rand is exposed to check for division
         int score = 0;
@@ -76,7 +76,7 @@ namespace MathPracticeGUI
         }
 
         // let's do some maths...
-        public void compute()
+        private void compute()
         {
             labelQuestion.Visible = true;
             answerBox.Clear();
@@ -110,24 +110,49 @@ namespace MathPracticeGUI
 
                 }
             }
-            else		//what happens in the end
+            else
             {
                 endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                long totalTime = (endTime - startTime) / 1000;
-                lblScore.Visible = true;
-                lblScoreNum.Visible = true;
-                lblScoreNum.Text = score + " out of " + qn;
-                btnReset.Visible = true;
-                btnExit.Visible = true;
-                btnNext.Visible = false;
-                answerBox.Visible = false;
-                labelQuestion.Visible = false;
-                textQns.Visible = false;
-                lblTime.Text = "Test duration: " + totalTime + " seconds";
-                lblTime.Visible = true;
+                displayResult();
             }
         }
 
+        private void displayResult()		// This is shown in the end
+        {
+            long totalTime = (endTime - startTime) / 1000;
+            lblScore.Visible = true;
+            lblScoreNum.Visible = true;
+            lblScoreNum.Text = score + " out of " + qn;
+            btnReset.Visible = true;
+            btnExit.Visible = true;
+            btnNext.Visible = false;
+            answerBox.Visible = false;
+            labelQuestion.Visible = false;
+            textQns.Visible = false;
+            lblTime.Text = "Test duration: " + totalTime + " seconds";
+            lblTime.Visible = true;
+            // Messages displayed in the end
+            if (score == qn)
+            {
+                MessageBox.Show("You've got " + score + " out of " + qn + "\t\t \nA perfect score!",
+                "Well done!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (score >= (80*qn/100))
+            {
+                MessageBox.Show("You've got " + score + " out of " + qn + "\t\t \nGood, but you should practice more.",
+                "Good ...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (score <= (40 * qn / 100))
+            {
+                MessageBox.Show("You've got " + score + " out of " + qn + "\t\t \nYou need a lot of math practice.",
+                "It's not good ...", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            else
+            {
+                MessageBox.Show("You've got " + score + " out of " + qn + "\t\t \nYou should practice more.",
+                "Not good!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         // check for digits and backspace only, I'll add some more codes later
         private void textQns_KeyPress(object sender, KeyPressEventArgs e)

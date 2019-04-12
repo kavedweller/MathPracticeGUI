@@ -27,7 +27,7 @@ namespace MathPracticeGUI
 
 
         // Addition ----------------------------------------------				
-        public void learnSum()
+        public void LearnSum()
         {
             num1 = rnd.Next(1, 10);
             num2 = rnd.Next(1, 10);
@@ -37,7 +37,7 @@ namespace MathPracticeGUI
         }
 
         // Multiplication ----------------------------------------------		
-        public void learnMulti()
+        public void LearnMulti()
         {
             num1 = rnd.Next(1, 10);
             num2 = rnd.Next(1, 10);
@@ -47,7 +47,7 @@ namespace MathPracticeGUI
         }
 
         // Subtration ----------------------------------------------		
-        public void learnSub()
+        public void LearnSub()
         {
             num1 = rnd.Next(1, 10);
             num2 = rnd.Next(1, 10);
@@ -68,7 +68,7 @@ namespace MathPracticeGUI
         }
 
         // Division ----------------------------------------------				
-        public void learnDiv()
+        public void LearnDiv()
         {
             num1 = rnd.Next(1, 10);
             num2 = rnd.Next(1, 10);

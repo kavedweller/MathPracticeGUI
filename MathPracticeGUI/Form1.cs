@@ -27,8 +27,8 @@ namespace MathPracticeGUI
 
             // I think these lines could also be added in the Form1.Designer.cs
             // I'll do some experiments later! 
-            this.textQns.KeyPress += new KeyPressEventHandler(textQns_KeyPress);
-            this.answerBox.KeyPress += new KeyPressEventHandler(answerBox_KeyPress);
+            this.tbQuestions.KeyPress += new KeyPressEventHandler(TextQuestions_KeyPress);
+            this.tbAnswerBox.KeyPress += new KeyPressEventHandler(AnswerBox_KeyPress);
         }
 
         LearnMath lm = new LearnMath(); // let's create an object!!
@@ -45,9 +45,9 @@ namespace MathPracticeGUI
         {
             // I'll hide some controls here.
             // could have been set in the properties initially!
-            labelQuestion.Visible = false;
+            lbQuestion.Visible = false;
             btnNext.Visible = false;
-            answerBox.Visible = false;
+            tbAnswerBox.Visible = false;
         }
 
 
@@ -64,47 +64,47 @@ namespace MathPracticeGUI
         // first encounter!!
         private void btnOK_Click(object sender, EventArgs e)
         {
-            qn = Convert.ToInt32(textQns.Text);
-            textQns.Enabled = false;
+            qn = Convert.ToInt32(tbQuestions.Text);
+            tbQuestions.Enabled = false;
             label.Visible = false;
             btnOK.Visible = false;
             btnNext.Visible = true;
-            answerBox.Visible = true;
-            answerBox.Focus();
+            tbAnswerBox.Visible = true;
+            tbAnswerBox.Focus();
             startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            compute();
+            Compute();
         }
 
         // let's do some maths...
-        private void compute()
+        private void Compute()
         {
-            labelQuestion.Visible = true;
-            answerBox.Clear();
+            lbQuestion.Visible = true;
+            tbAnswerBox.Clear();
             btnNext.Enabled = false;
-            textQns.Text = (qn - count) + " remaining";
+            tbQuestions.Text = (qn - count) + " remaining";
             if (count < qn)
             {
                 rand = lm.rnd.Next(1, 5);
                 switch (rand)
                 {
                     case 1:
-                        lm.learnSum();
-                        labelQuestion.Text = lm.num1 + " + " + lm.num2 + " = ?";
+                        lm.LearnSum();
+                        lbQuestion.Text = lm.num1 + " + " + lm.num2 + " = ?";
                         break;
 
                     case 2:
-                        lm.learnSub();
-                        labelQuestion.Text = lm.num1 + " − " + lm.num2 + " = ?";
+                        lm.LearnSub();
+                        lbQuestion.Text = lm.num1 + " − " + lm.num2 + " = ?";
                         break;
 
                     case 3:
-                        lm.learnMulti();
-                        labelQuestion.Text = lm.num1 + " × " + lm.num2 + " = ?";
+                        lm.LearnMulti();
+                        lbQuestion.Text = lm.num1 + " × " + lm.num2 + " = ?";
                         break;
 
                     default:
-                        lm.learnDiv();
-                        labelQuestion.Text = lm.num1 + " ÷ " + lm.num2 + " = ?";
+                        lm.LearnDiv();
+                        lbQuestion.Text = lm.num1 + " ÷ " + lm.num2 + " = ?";
                         lblDecimal.Visible = true;
                         break;
 
@@ -113,22 +113,22 @@ namespace MathPracticeGUI
             else
             {
                 endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                displayResult();
+                DisplayResult();
             }
         }
 
-        private void displayResult()		// This is shown in the end
+        private void DisplayResult()		// This is shown in the end
         {
             long totalTime = (endTime - startTime) / 1000;
-            lblScore.Visible = true;
-            lblScoreNum.Visible = true;
-            lblScoreNum.Text = score + " out of " + qn;
+            lbScore.Visible = true;
+            lbScoreNum.Visible = true;
+            lbScoreNum.Text = score + " out of " + qn;
             btnReset.Visible = true;
             btnExit.Visible = true;
             btnNext.Visible = false;
-            answerBox.Visible = false;
-            labelQuestion.Visible = false;
-            textQns.Visible = false;
+            tbAnswerBox.Visible = false;
+            lbQuestion.Visible = false;
+            tbQuestions.Visible = false;
             lblTime.Text = "Test duration: " + totalTime + " seconds";
             lblTime.Visible = true;
             // Messages displayed in the end
@@ -155,17 +155,17 @@ namespace MathPracticeGUI
         }
 
         // check for digits and backspace only, I'll add some more codes later
-        private void textQns_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextQuestions_KeyPress(object sender, KeyPressEventArgs e)
         {
             //const char Backspace = (char)8;
             e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
         }
 
         //enable OK button
-        private void textQns_TextChanged(object sender, EventArgs e)
+        private void TextQuestions_TextChanged(object sender, EventArgs e)
         {
             //check for empty string
-            if (!string.IsNullOrEmpty(this.textQns.Text))
+            if (!string.IsNullOrEmpty(this.tbQuestions.Text))
             {
                 btnOK.Enabled = true;
             }
@@ -178,7 +178,7 @@ namespace MathPracticeGUI
 
         // the answerBox is different than above example
         // it occationally requires just one decimal ".", not more.
-        private void answerBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AnswerBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (rand == 4)
             {
@@ -200,10 +200,10 @@ namespace MathPracticeGUI
         }
 
         //Next button is enabled after text input
-        private void answerBox_TextChanged(object sender, EventArgs e)
+        private void AnswerBox_TextChanged(object sender, EventArgs e)
         {
             //check for empty string
-            if (!string.IsNullOrEmpty(this.answerBox.Text))
+            if (!string.IsNullOrEmpty(this.tbAnswerBox.Text))
             {
                 btnNext.Enabled = true;
             }
@@ -215,12 +215,12 @@ namespace MathPracticeGUI
 
 
         // event-driven part
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
             string result;
             if (rand == 4)
             {
-                double userAns = Convert.ToDouble(answerBox.Text);
+                double userAns = Convert.ToDouble(tbAnswerBox.Text);
                 //userAns = (Math.Round(userAns, 3));
                 userAns = Math.Truncate(userAns * 1000) / 1000;   // Rounding off could be difficult for the user, hence truncated!
                 if (userAns == lm.answerDiv)
@@ -236,7 +236,7 @@ namespace MathPracticeGUI
             }
             else
             {
-                int userAns = Convert.ToInt32(answerBox.Text);
+                int userAns = Convert.ToInt32(tbAnswerBox.Text);
                 if (userAns == lm.answer)
                 {
                     result = "correct.";
@@ -251,12 +251,12 @@ namespace MathPracticeGUI
             lblDecimal.Visible = false;
 
             count++;
-            compute();
+            Compute();
         }
 
 
         // I don't know how it is done properly, I found it on stackoverflow!
-        private void btnReset_Click(object sender, EventArgs e)
+        private void BtnReset_Click(object sender, EventArgs e)
         {
             Form1 NewForm = new Form1();
             NewForm.Show();
@@ -264,18 +264,18 @@ namespace MathPracticeGUI
         }
 
         //process termination (along with all its threads)
-        private void btnExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         //this is the only child form for demo only
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox cr = new AboutBox();
             cr.Show();
